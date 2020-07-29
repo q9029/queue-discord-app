@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const token = process.env.TOKEN;
 const ytdl = require("ytdl-core");
 
+const queue = new Map();
+
 const client = new Discord.Client();
 
 client.once("ready", () => {
