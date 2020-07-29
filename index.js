@@ -15,6 +15,13 @@ const psql = new Client({
 });
 psql.connect();
 
+    psql.query("select * from guardians where name = アルテミス order by name;", (err, res) => {
+      if (err) throw err;
+      for (let row of res.rows) {
+        console.log(JSON.rarity + " " + JSON.name + "\r\n" + JSON.damege + " " + JSON.recast + "\r\n" + JSON.skill + "\r\n" + JSON.support);
+      }
+    });
+
 // discordに接続する
 const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
@@ -41,16 +48,17 @@ client.on("message", async message => {
     return;
   }
 
-  if (message.content.startsWith("s ")) {
+  /*
+  if (message.content.startsWith("/search ")) {
     const args = message.content.split(" ");
     psql.query("select * from guardians where name = '" + args[1] + "' order by name;", (err, res) => {
       if (err) throw err;
       for (let row of res.rows) {
         console.log(JSON.stringify(row));
       }
-      psql.end();
     });
   }
+  */
 
 });
 
