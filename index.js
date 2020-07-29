@@ -49,7 +49,6 @@ client.on("message", async message => {
     message.channel.send("たべたい");
     return;
   }
-
   if (message.content.indexOf("敗北者") != -1) {
     message.channel.send("取り消せよ……!! ハァ… 今の言葉……!!!");
     return;
@@ -57,12 +56,14 @@ client.on("message", async message => {
 
   if (message.content.startsWith("おしえて ")) {
     const args = message.content.split(" ");
-    psql.query("select * from guardians where name = '" + args[1] + "' order by name;", (err, res) => {
-      if (err) throw err;
-      for (let row of res.rows) {
-        message.channel.send("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
-      }
-    });
+    if (args.length > 1) {
+      psql.query("select * from guardians where name = '" + args[1] + "' order by name;", (err, res) => {
+        if (err) throw err;
+        for (let row of res.rows) {
+          message.channel.send("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
+        }
+      });
+    }
     return;
   }
 });
