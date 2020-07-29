@@ -5,18 +5,25 @@ express().listen(port, function(){
     console.log("Listen!");
 });
 
-// 非公開情報は環境変数から取得する
-const token = process.env.TOKEN;
+// postgresqlに接続する
+const { Client } = require('pg');
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+client.connect();
 
-const pg = require('pg');
-pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-  client.query('select * from guardians order by name', function(err, result) {
-    done();
-    if(err) return console.error(err);
-    console.log(result.rows);
-  });
+client.query('select * from guardians order by name;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
 });
 
+// discordに接続する
 const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 
@@ -31,7 +38,7 @@ client.once("disconnect", () => {
   console.log("Disconnect!");
 });
 
-// メッセージ受信時
+// リスナー定義
 client.on("message", async message => {
 
   // 投稿者がbotは無視する
@@ -43,5 +50,5 @@ client.on("message", async message => {
   }
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
 	
