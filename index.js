@@ -58,6 +58,7 @@ client.on("message", async message => {
         message.channel.send("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
       }
     });
+    return;
   }
 });
 
