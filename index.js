@@ -15,12 +15,14 @@ const psql = new Client({
 });
 psql.connect();
 
-    psql.query("select * from guardians where name = 'アルテミス' order by name;", (err, res) => {
-      if (err) throw err;
-      for (let row of res.rows) {
-        console.log("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
-      }
-    });
+/*
+psql.query("select * from guardians where name = 'アルテミス' order by name;", (err, res) => {
+if (err) throw err;
+  for (let row of res.rows) {
+    console.log("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
+  }
+});
+*/
 
 // discordに接続する
 const Discord = require("discord.js");
@@ -48,18 +50,15 @@ client.on("message", async message => {
     return;
   }
 
-  /*
   if (message.content.startsWith("/search ")) {
     const args = message.content.split(" ");
     psql.query("select * from guardians where name = '" + args[1] + "' order by name;", (err, res) => {
       if (err) throw err;
       for (let row of res.rows) {
-        console.log(JSON.stringify(row));
+        message.channel.send("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
       }
     });
   }
-  */
-
 });
 
 client.login(process.env.TOKEN);
