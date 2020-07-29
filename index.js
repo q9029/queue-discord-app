@@ -6,21 +6,21 @@ express().listen(port, function(){
 });
 
 // postgresqlに接続する
-const { Client } = require('pg');
-const client = new Client({
+const { Psql } = require('pg');
+const psql = new Psql({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
-client.connect();
+psql.connect();
 
-client.query('select * from guardians order by name;', (err, res) => {
+psql.query('select * from guardians order by name;', (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
   }
-  client.end();
+  psql.end();
 });
 
 // discordに接続する
