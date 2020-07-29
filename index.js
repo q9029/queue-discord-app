@@ -1,12 +1,12 @@
 // herokuはポートリッスンしないと60sで落とされる
-const express = require('express');
+const express = require("express");
 const port = process.env.PORT || 5000;
 express().listen(port, function(){
     console.log("Listen!");
 });
 
 // postgresqlに接続する
-const { Client } = require('pg');
+const { Client } = require("pg");
 const psql = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -18,7 +18,7 @@ psql.connect();
     psql.query("select * from guardians where name = 'アルテミス' order by name;", (err, res) => {
       if (err) throw err;
       for (let row of res.rows) {
-        console.log(JSON.rarity + " " + JSON.name + "\r\n" + JSON.damege + " " + JSON.recast + "\r\n" + JSON.skill + "\r\n" + JSON.support);
+        console.log(row.rarity + " " + row.name + "\r\n" + row.damege + " " + row.recast + "\r\n" + row.skill + "\r\n" + row.support);
       }
     });
 
