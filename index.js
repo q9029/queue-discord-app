@@ -15,7 +15,7 @@ const psql = new Client({
 });
 psql.connect();
 
-    psql.query("select * from guardians where name = アルテミス order by name;", (err, res) => {
+    psql.query("select * from guardians where name = 'アルテミス' order by name;", (err, res) => {
       if (err) throw err;
       for (let row of res.rows) {
         console.log(JSON.rarity + " " + JSON.name + "\r\n" + JSON.damege + " " + JSON.recast + "\r\n" + JSON.skill + "\r\n" + JSON.support);
