@@ -6,8 +6,8 @@ express().listen(port, function(){
 });
 
 // postgresqlに接続する
-const { Psql } = require('pg');
-const psql = new Psql({
+const { Client } = require('pg');
+const psql = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
@@ -22,7 +22,7 @@ psql.query('select * from guardians order by name;', (err, res) => {
   }
   psql.end();
 });
-
+	
 // discordに接続する
 const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
