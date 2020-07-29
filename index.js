@@ -18,7 +18,7 @@ psql.connect();
     psql.query("select * from guardians where name = 'アルテミス' order by name;", (err, res) => {
       if (err) throw err;
       for (let row of res.rows) {
-        console.log("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル" + row.support);
+        console.log("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
       }
     });
 
