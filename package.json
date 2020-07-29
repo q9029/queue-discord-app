@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/q9029/queue-discord-app#readme",
   "dependencies": {
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.2.0",
+    "ytdl-core": "^3.2.0"
   }
 }
