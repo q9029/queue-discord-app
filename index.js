@@ -1,6 +1,5 @@
 const express = require('express')
 const port = process.env.PORT || 5000
-var express = require("express");
 express().listen(port, function(){
     console.log("Listen!");
 });
