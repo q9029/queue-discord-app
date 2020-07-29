@@ -50,7 +50,7 @@ client.on("message", async message => {
     return;
   }
 
-  if (message.content.startsWith("/search ")) {
+  if (message.content.startsWith("@738036510573592596 ")) {
     const args = message.content.split(" ");
     psql.query("select * from guardians where name = '" + args[1] + "' order by name;", (err, res) => {
       if (err) throw err;
