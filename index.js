@@ -69,3 +69,13 @@ client.on("message", async message => {
 });
 
 client.login(process.env.TOKEN);
+
+// herokuは1時間アクセスがないと落とされる
+const https = require('https');
+while (true) {
+  sleep(60000, function() {
+    https.get('https://queue-discord-app.herokuapp.com/', function(res) {
+      console.log("Get!");
+    });
+  });
+}
