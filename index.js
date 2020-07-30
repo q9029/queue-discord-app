@@ -80,7 +80,7 @@ while (true) {
   while (true) {
     const d2 = new Date();
     if (d2 - d1 > 60) {
-      return;
+      break;
     }
   }
 }
