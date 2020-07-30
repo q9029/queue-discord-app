@@ -70,6 +70,8 @@ client.on("message", async message => {
 
 client.login(process.env.TOKEN);
 
+/*
+TODO 別スレッド化
 // herokuは1時間アクセスがないと落とされる
 const https = require('https');
 while (true) {
@@ -84,3 +86,4 @@ while (true) {
     }
   }
 }
+*/
