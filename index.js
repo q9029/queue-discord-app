@@ -1,20 +1,14 @@
 const { exec } = require('child_process');
 
-exec('ls -l', (err, stdout, stderr) => {
-    if (err) {
-      console.log(`stderr: ${stderr}`);
-      return
-    }
-    console.log(`stdout: ${stdout}`);
-  }
-)
-console.log('わくわくBank');
+console.log('indes.js thread');
 
-const https = require('https');
+exec('node thread.js', (err, stdout, stderr) => {
+    console.log("call thread.js");
+  }
+);
+
 while (true) {
-  https.get('https://queue-discord-app.herokuapp.com/', function(res) {
-    console.log("Get!");
-  });
+  console.log("Loop!");
   const d1 = new Date();
   while (true) {
     const d2 = new Date();
