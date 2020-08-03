@@ -3,22 +3,8 @@ const https = require('https');
 
 const port = process.env.PORT || 5000;
 
-express().listen(port, function(){
-  while (true) {
-    https.get('https://queue-discord-app.herokuapp.com/', function(res) {
-      console.log("Get!");
-    });
-    const d1 = new Date();
-    while (true) {
-      const d2 = new Date();
-      if (d2 - d1 > 1000) {
-        break;
-      }
-    }
-  }
-});
+express().listen(port, function(){});
 
-// postgresqlに接続する
 const { Client } = require("pg");
 const psql = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -37,7 +23,6 @@ if (err) throw err;
 });
 */
 
-// discordに接続する
 const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 
@@ -52,10 +37,8 @@ client.once("disconnect", () => {
   console.log("Disconnect!");
 });
 
-// リスナー定義
 client.on("message", async message => {
 
-  // 投稿者がbotは無視する
   if (message.author.bot) return;
 
   if (message.content.indexOf("にんじん") != -1) {
@@ -81,15 +64,4 @@ client.on("message", async message => {
   }
 });
 
-//client.login(process.env.TOKEN);
-
-while (true) {
-  console.log("Loop!");
-  const d1 = new Date();
-  while (true) {
-    const d2 = new Date();
-    if (d2 - d1 > 1000) {
-      break;
-    }
-  }
-}
+client.login(process.env.TOKEN);
