@@ -56,7 +56,7 @@ client.on("message", async message => {
       psql.query("select * from guardians where name = '" + args[1] + "' order by name;", (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
-          message.channel.send("[" + row.rarity + "] " + row.name + "\r\n\r\n○通常スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成スキル\r\n" + row.support);
+          message.channel.send("[" + row.rarity + "] " + row.name + "\r\n\r\n○一般スキル\r\n" + row.damege + " CT：" + row.recast + "\r\n" + row.skill + "\r\n\r\n○編成ボーナス\r\n" + row.support);
         }
       });
     }
